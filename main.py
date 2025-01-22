@@ -22,10 +22,11 @@ import re
 import os
 
 bot = Client("bot",
-             bot_token= "6318119370:AAHZRO1n-as7qs9CxGztsn78d-pwWpC2r-c",
+             bot_token= "7734513444:AAEJagpQmo_hEt4hx3WSEYnIvLGU0a3bp9k",
              api_id= 27495136,
              api_hash= "4ccc4865eec4d8fde7530e71948b3424")
 
+cookies_file_path = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
 
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
@@ -157,6 +158,11 @@ async def account_login(bot: Client, m: Message):
 
             if "jw-prod" in url:
                 cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
+            
+            elif "youtube.com" in url or "youtu.be" in url:
+                cmd = f'yt-dlp --cookies youtube_cookies.txt -f "{ytf}" "{url}" -o "{name}".mp4'
+
+           
             else:
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
@@ -207,6 +213,9 @@ async def account_login(bot: Client, m: Message):
     except Exception as e:
         await m.reply_text(e)
     await m.reply_text("Done")
-
+print("""
+🇾 🇴 🇬 🇪 🇸 🇭""")
+print("""✅ 𝐃𝐞𝐩𝐥𝐨𝐲 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 ✅""")
+print("""✅ 𝐁𝐨𝐭 𝐖𝐨𝐫𝐤𝐢𝐧𝐠 ✅""")
 
 bot.run()
